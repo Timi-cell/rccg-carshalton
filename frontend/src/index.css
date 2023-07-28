@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  /* user-select: none; */
+  font-family: "DM Sans", sans-serif;
+  scroll-behavior: smooth;
+}
+:root {
+  --blue: #030b6b;
+  --grey: #eee;
+  --white: #fff;
+  --red: red;
+  --green: green;
+}
+
+.contact label {
+  color: #fff !important;
+  text-transform: uppercase;
+}
+/* body {
+  background-color: #eee !important;
+} */
+.active {
+  color: blue !important;
+}
+.about ol li {
+  list-style: disc;
+}
+.about ul li {
+  list-style: decimal;
+}
+.contact p {
+  word-break: break-all;
+}
+.banner {
+  background-color: rgba(0, 0, 0, 0.664) !important;
+}
+.event {
+  display: grid;
+  grid-template-rows: 1fr 150px;
+  /* grid-template-rows: minmax(auto-fit, 100px); */
+  grid-template-columns: 1fr;
+  place-items: start;
+  gap: 10px;
+  justify-content: space-between;
+}
+.ministry {
+  overflow-x: scroll;
+  scroll-padding: 24px;
+  gap: 12px;
+  border-radius: 8px;
+  display: flex;
+  scroll-snap-type: x mandatory;
+}
+.ministry::-webkit-scrollbar {
+  display: none;
+}
+.buttons p {
+  border-radius: 50% !important;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.bg-light {
+  background-color: #eee;
+}
+.history p {
+  margin-top: 1.2rem;
+}
+textarea {
+  resize: none;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700 !important;
+  line-height: 1.5 !important;
+  /* word-break: break-all !important; */
+}
+
+.show {
+  display: block !important;
+}
+
+img {
+  object-fit: cover !important;
+}
+
+/* .react-confirm-alert-body,
+.react-confirm-alert-button-group > button,
+.Toastify__toast-body {
+  font-family: "Inter", sans-serif !important;
+} */
+
+/* Styles for Toastify and React-Confirm-Alert*/
+
+/* @media screen and (max-width: 768px) {
+  .Toastify__toast-body {
+    font-size: 1.7rem !important;
+  }
+  .react-confirm-alert-body {
+    font-size: 1.7rem !important;
+    width: 100% !important;
+  }
+  .react-confirm-alert-body > h1 {
+    font-size: 2rem !important;
+  }
+  .react-confirm-alert-body > h3 {
+    font-size: 2rem !important;
+  }
+  .react-confirm-alert-button-group > button {
+    font-size: 2rem !important;
+  }
+} */

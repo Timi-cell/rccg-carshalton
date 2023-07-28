@@ -1,0 +1,25 @@
+@use "./partial";
+
+.wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9;
+  img {
+    height: 10rem;
+    width: 10rem;
+  }
+}
+
+.loader {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.center {
+  @include partial.flex($gap: 0rem, $justify: center);
+}
