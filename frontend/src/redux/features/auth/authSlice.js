@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const status = JSON.parse(localStorage.get("status"));
+const status = JSON.parse(localStorage.getItem("status"));
 
 const initialState = {
   isLoggedIn: status ? status : "",
