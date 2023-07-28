@@ -1,7 +1,5 @@
 import axios from "axios";
 
-// const BACKEND_URL = "http://localhost:9000";
-
 // Add Member
 const addMember = async (memberData) => {
   const response = await axios.post(

@@ -1,8 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-// const BACKEND_URL = "http://localhost:9000";
-
 // Verify Email
 export const validateEmail = (email) => {
   const re =
