@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+const status = JSON.parse(localStorage.get("status"));
 
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: status ? status : "",
 };
 
 const authSlice = createSlice({
@@ -10,11 +11,12 @@ const authSlice = createSlice({
   reducers: {
     SET_LOGIN(state, action) {
       state.isLoggedIn = action.payload;
+      localStorage.setItem("status", JSON.stringify(action.payload));
     },
   },
 });
 
-export const {SET_LOGIN} = authSlice.actions;
+export const { SET_LOGIN } = authSlice.actions;
 export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
 
 export default authSlice.reducer;

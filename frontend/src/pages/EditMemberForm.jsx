@@ -7,9 +7,10 @@ import {
   getMembers,
   updateMember,
 } from "../redux/features/member/memberSlice";
-
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const EditMemberForm = () => {
+  useRedirectLoggedOutUser("/login");
   const { id } = useParams();
   let { member } = useSelector((state) => state.member);
   const dispatch = useDispatch();

@@ -78,7 +78,7 @@ const Header = () => {
         <ShowOnLogin>
           <Link to="/dashboard">
             <button className="lg:text-lg text-sm sm:text-base px-5 py-2.5 text-green-600 border-2 border-green-600 rounded-md transition-all delay-100 ease-in hover:text-white hover:bg-green-600 focus:bg-green-700 focus:text-white focus:border-green-700">
-        Dashboard
+              Dashboard
             </button>
           </Link>
         </ShowOnLogin>

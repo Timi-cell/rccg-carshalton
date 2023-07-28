@@ -4,8 +4,10 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { addMember, getMembers } from "../redux/features/member/memberSlice";
 import Loader from "../components/Loader";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 
 const AddMemberForm = () => {
+  useRedirectLoggedOutUser("/login");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const initialState = {

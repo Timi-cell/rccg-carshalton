@@ -4,7 +4,7 @@ import { InfoBlock } from "../components/Blocks";
 import MembersList from "../components/MembersList";
 import { Link } from "react-router-dom";
 import { CSVLink } from "react-csv";
-// import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
+import useRedirectLoggedOutUser from "../customHook/useRedirectLoggedOutUser";
 import { useDispatch, useSelector } from "react-redux";
 import {
   CALC_FEMALE,
@@ -23,6 +23,7 @@ import {
 } from "../redux/features/filter/filterSlice";
 
 const Dashboard = () => {
+    useRedirectLoggedOutUser("/login");
   const filteredMembers = useSelector(selectfilteredMembers);
   const message = useSelector(selectMessage);
   const [search, setSearch] = useState("");
@@ -60,7 +61,7 @@ const Dashboard = () => {
       ]
     ),
   ];
-  // useRedirectLoggedOutUser("/login");
+
   const refreshPage = () => {
     dispatch(getMembers());
     dispatch(CALC_MALE(members));
