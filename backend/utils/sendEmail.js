@@ -23,17 +23,17 @@ const sendEmail = async (subject, msg, send_to, send_from, reply_to) => {
   };
 
   //  Send Email
-  // await new Promise((resolve, reject) => {
+  await new Promise((resolve, reject) => {
     transporter.sendMail(options, function (err, info) {
       if (err) {
         console.log(err);
-        // reject(err);
+        reject(err);
       } else {
         console.log(info);
-        // resolve(info);
+        resolve(info);
       }
     });
-//   });
+  });
 };
 
 module.exports = sendEmail;
