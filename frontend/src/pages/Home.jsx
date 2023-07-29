@@ -38,7 +38,7 @@ const Home = () => {
               WELCOME TO THE REDEEMED CHRISTIAN CHURCH OF GOD CARSHALTON <br />{" "}
               WHERE JESUS IS LORD!
             </h1>
-            <h2 className="italic text-2xl sm:text-3xl md:text-4xl text-green-700 mt-2 animate__animated animate__flipInY">
+            <h2 className="italic text-2xl sm:text-3xl md:text-4xl text-green-700 mt-2 animate__animated animate__zoomIn">
               2023 OUR YEAR OF COVENANT SETTLEMENT
             </h2>
             <Link to="/events">

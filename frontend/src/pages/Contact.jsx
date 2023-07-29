@@ -1,9 +1,44 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
+import memberService from "../services/memberService";
+
+const initialState = {
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+};
 
 const Contact = () => {
+  const [data, setData] = useState(initialState);
+  let { name, email, phone, message } = data;
+  const handleChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!name || !email || !phone || !message) {
+      toast.error("Please fill in all required fields!", {
+        position: toast.POSITION.TOP_LEFT,
+      });
+      return;
+    }
+
+    try {
+      await memberService.getMemberMessage(data);
+      setData(initialState);
+    } catch (error) {
+      toast.error("Report could not be sent, please try again!", {
+        position: toast.POSITION.TOP_LEFT,
+      });
+    }
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -28,12 +63,14 @@ const Contact = () => {
               Avenue, Carshalton, Surrey, SM5 2FJ, United Kingdom
             </p>
           </div>
-          <form className="w-full md:w-1/2">
+          <form className="w-full md:w-1/2" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="name">Name</label>
               <input
                 type="text"
                 id="name"
+                value={name}
+                onChange={handleChange}
                 placeholder="Name"
                 className="w-full block mt-4 rounded-lg placeholder:text-gray-600"
                 required
@@ -45,6 +82,8 @@ const Contact = () => {
               <input
                 type="email"
                 id="email"
+                value={email}
+                onChange={handleChange}
                 placeholder="Email"
                 className="w-full block mt-4 rounded-lg placeholder:text-gray-600"
                 required
@@ -56,6 +95,8 @@ const Contact = () => {
               <input
                 type="text"
                 id="phone"
+                value={phone}
+                onChange={handleChange}
                 placeholder="Phone"
                 className="w-full block mt-4 rounded-lg placeholder:text-gray-600"
                 required
@@ -68,20 +109,22 @@ const Contact = () => {
                 id="message"
                 cols="20"
                 rows="5"
+                value={message}
+                onChange={handleChange}
                 placeholder="Type a message..."
                 className="w-full block mt-4 rounded-lg placeholder:text-gray-600"
                 name="message"
                 required
               ></textarea>
             </div>
-            <div className="mt-4 flex flex-row gap-4 items-center">
+            {/* <div className="mt-4 flex flex-row gap-4 items-center">
               <input type="checkbox" id="checkbox" name="checkbox" required />
               <label htmlFor="checkbox">
                 I hereby agree that this data will be stored and processed for
                 the purpose of establishing contact. I am aware that I can
                 revoke my consent at any time.
               </label>
-            </div>
+            </div> */}
             <button className="px-6 py-3 mt-4 lg:text-lg text-sm sm:text-base bg-blue-600 text-white rounded-md transition-all delay-100 ease-in hover:bg-blue-800  hover:border-blue-800">
               Send
             </button>
