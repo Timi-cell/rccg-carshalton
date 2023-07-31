@@ -141,11 +141,11 @@ const Dashboard = () => {
             Add New Member
           </button>
         </Link>
-        <CSVLink filename="rccgcarshalton_members.csv" data={csvData}>
+   {   members.length > 0 &&  <CSVLink filename="rccgcarshalton_members.csv" data={csvData}>
           <button className="px-6 py-3 text-base  animate__animated animate__fadeInRight bg-blue-600 text-white rounded-md transition-all delay-100 ease-in hover:bg-blue-800  hover:border-blue-800">
             Export To CSV
           </button>
-        </CSVLink>
+        </CSVLink>}
       </div>
       <MembersList
         loadingStatus={loadingStatus}

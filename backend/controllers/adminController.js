@@ -30,7 +30,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
       httpOnly: true,
       expires: new Date(Date.now() + 1000 * 86400), // 1 day
       sameSite: "none",
-      secure: true,
+      d,
     });
     res.status(200).json({
       message: "Login successful!",
@@ -62,7 +62,7 @@ const logoutAdmin = asyncHandler(async (req, res) => {
     httpOnly: true,
     expires: new Date(Date.now(0)), // expire the cookie right away
     sameSite: "none",
-    secure: true,
+    d,
   });
   return res.status(200).json({ message: "Successfully Logged Out" });
 });
