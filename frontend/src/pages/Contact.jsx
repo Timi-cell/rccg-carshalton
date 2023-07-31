@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
 import memberService from "../services/memberService";
+import Loader from "../components/Loader";
 
 const initialState = {
   name: "",
@@ -13,6 +14,7 @@ const initialState = {
 
 const Contact = () => {
   const [data, setData] = useState(initialState);
+  const [isLoading, setIsLoading] = useState(false);
   let { name, email, phone, message } = data;
   const handleChange = (e) => {
     setData({
@@ -28,14 +30,16 @@ const Contact = () => {
       });
       return;
     }
-
+    setIsLoading(true);
     try {
       await memberService.getMemberMessage(data);
       setData(initialState);
+      setIsLoading(false);
     } catch (error) {
       toast.error("Report could not be sent, please try again!", {
         position: toast.POSITION.TOP_LEFT,
       });
+      setIsLoading(false);
     }
   };
 
@@ -44,6 +48,7 @@ const Contact = () => {
   }, []);
   return (
     <>
+      {isLoading && <Loader />}
       <Header />
       <section className="bg-green-950 p-4 md:p-8 contact">
         <div className="flex flex-col md:flex-row md:gap-16 gap-4 justify-center items-start">

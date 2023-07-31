@@ -128,7 +128,7 @@ const deleteMember = asyncHandler(async (req, res) => {
 const getMemberMessage = asyncHandler(async (req, res) => {
   const { name, email, phone, message } = req.body;
   const send_from = process.env.EMAIL_USER;
-  const send_to = process.env.EMAIL_USER;
+  const send_to = process.env.EMAIL_CHURCH;
   const reply_to = email;
   const subject = `New message from the church website`;
   const msg = `
