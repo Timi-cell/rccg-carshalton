@@ -146,7 +146,7 @@ const Contact = () => {
                 placeholder="Phone"
                 className="w-full block mt-4 rounded-lg placeholder:text-gray-600"
                 required
-                name="phone"
+                name="user_phone"
               />
             </div>
             <div className="mt-4">
