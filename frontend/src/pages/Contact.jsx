@@ -1,47 +1,78 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
-import memberService from "../services/memberService";
+// import memberService from "../services/memberService";
 import Loader from "../components/Loader";
+import emailjs from "@emailjs/browser";
 
-const initialState = {
-  name: "",
-  email: "",
-  phone: "",
-  message: "",
-};
+// const initialState = {
+//   name: "",
+//   email: "",
+//   phone: "",
+//   message: "",
+// };
 
 const Contact = () => {
-  const [data, setData] = useState(initialState);
+  // const [data, setData] = useState(initialState);
   const [isLoading, setIsLoading] = useState(false);
-  let { name, email, phone, message } = data;
-  const handleChange = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!name || !email || !phone || !message) {
-      toast.error("Please fill in all required fields!", {
-        position: toast.POSITION.TOP_LEFT,
-      });
-      return;
-    }
+  const form = useRef();
+  const sendMessage = (e) => {
     setIsLoading(true);
+    e.preventDefault();
     try {
-      await memberService.getMemberMessage(data);
-      setData(initialState);
+      emailjs
+        .sendForm(
+          "service_0elmj6f",
+          "template_qo9fclb",
+          form.current,
+          "9XZrfSc4JEXID9eyi"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+      e.target.reset();
+      toast.success("Message sent!. Please expect my reply in your inbox.");
       setIsLoading(false);
     } catch (error) {
-      toast.error("Report could not be sent, please try again!", {
-        position: toast.POSITION.TOP_LEFT,
-      });
       setIsLoading(false);
+      toast.error(
+        "Message could not be sent, please check/change your network connectivity and try again."
+      );
     }
   };
+  // let { name, email, phone, message } = data;
+  // const handleChange = (e) => {
+  //   setData({
+  //     ...data,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!name || !email || !phone || !message) {
+  //     toast.error("Please fill in all required fields!", {
+  //       position: toast.POSITION.TOP_LEFT,
+  //     });
+  //     return;
+  //   }
+  //   setIsLoading(true);
+  //   try {
+  //     await memberService.getMemberMessage(data);
+  //     setData(initialState);
+  //     setIsLoading(false);
+  //   } catch (error) {
+  //     toast.error("Report could not be sent, please try again!", {
+  //       position: toast.POSITION.TOP_LEFT,
+  //     });
+  //     setIsLoading(false);
+  //   }
+  // };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -68,18 +99,23 @@ const Contact = () => {
               Avenue, Carshalton, Surrey, SM5 2FJ, United Kingdom
             </p>
           </div>
-          <form className="w-full md:w-1/2" onSubmit={handleSubmit}>
+          <form
+            className="w-full md:w-1/2"
+            // onSubmit={handleSubmit}
+            ref={form}
+            onSubmit={sendMessage}
+          >
             <div>
               <label htmlFor="name">Name</label>
               <input
                 type="text"
                 id="name"
-                value={name}
-                onChange={handleChange}
+                // value={name}
+                // onChange={handleChange}
                 placeholder="Name"
                 className="w-full block mt-4 rounded-lg placeholder:text-gray-600"
                 required
-                name="name"
+                name="user_name"
               />
             </div>
             <div className="mt-4">
@@ -87,12 +123,12 @@ const Contact = () => {
               <input
                 type="email"
                 id="email"
-                value={email}
-                onChange={handleChange}
+                // value={email}
+                // onChange={handleChange}
                 placeholder="Email"
                 className="w-full block mt-4 rounded-lg placeholder:text-gray-600"
                 required
-                name="email"
+                name="user_email"
               />
             </div>
             <div className="mt-4">
@@ -100,8 +136,8 @@ const Contact = () => {
               <input
                 type="text"
                 id="phone"
-                value={phone}
-                onChange={handleChange}
+                // value={phone}
+                // onChange={handleChange}
                 placeholder="Phone"
                 className="w-full block mt-4 rounded-lg placeholder:text-gray-600"
                 required
@@ -114,8 +150,8 @@ const Contact = () => {
                 id="message"
                 cols="20"
                 rows="5"
-                value={message}
-                onChange={handleChange}
+                // value={message}
+                // onChange={handleChange}
                 placeholder="Type a message..."
                 className="w-full block mt-4 rounded-lg placeholder:text-gray-600"
                 name="message"

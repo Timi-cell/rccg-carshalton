@@ -125,33 +125,33 @@ const deleteMember = asyncHandler(async (req, res) => {
 });
 
 // Get Member Message
-const getMemberMessage = asyncHandler(async (req, res) => {
-  const { name, email, phone, message } = req.body;
-  const send_from = process.env.EMAIL_USER;
-  const send_to = process.env.EMAIL_CHURCH;
-  const reply_to = email;
-  const subject = `New message from the church website`;
-  const msg = `
-<h2>Hello, RCCG Carshalton.</h2>
-<p>My name is ${name}.</p>
+// const getMemberMessage = asyncHandler(async (req, res) => {
+//   const { name, email, phone, message } = req.body;
+//   const send_from = process.env.EMAIL_USER;
+//   const send_to = process.env.EMAIL_CHURCH;
+//   const reply_to = email;
+//   const subject = `New message from the church website`;
+//   const msg = `
+// <h2>Hello, RCCG Carshalton.</h2>
+// <p>My name is ${name}.</p>
 
-<p>${message}</p>
+// <p>${message}</p>
 
-<p>Here is my phone number: ${phone}</p>
-<h4>Regards, ${name}.</h4>
-`;
+// <p>Here is my phone number: ${phone}</p>
+// <h4>Regards, ${name}.</h4>
+// `;
 
-  try {
-    await sendEmail(subject, msg, send_to, send_from, reply_to);
-    res.status(200).json({
-      success: true,
-      message: "Message successfully sent!",
-    });
-  } catch (error) {
-    res.status(500);
-    throw new Error("Report not sent, please try again");
-  }
-});
+//   try {
+//     await sendEmail(subject, msg, send_to, send_from, reply_to);
+//     res.status(200).json({
+//       success: true,
+//       message: "Message successfully sent!",
+//     });
+//   } catch (error) {
+//     res.status(500);
+//     throw new Error("Report not sent, please try again");
+//   }
+// });
 
 module.exports = {
   addMember,
@@ -159,5 +159,5 @@ module.exports = {
   getMembers,
   getMember,
   deleteMember,
-  getMemberMessage,
+  // getMemberMessage,
 };

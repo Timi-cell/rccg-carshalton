@@ -1,5 +1,5 @@
 import axios from "axios";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 // Add Member
 const addMember = async (memberData) => {
@@ -31,32 +31,32 @@ const updateMember = async (memberData) => {
 };
 
 // Get Member Message
-export const getMemberMessage = async (data) => {
-  try {
-    const response = await axios.post(
-      `/api/members/getmembermessage`,
-      data
-    );
-    toast.success(response.data.message, {
-      position: toast.POSITION.TOP_LEFT,
-    });
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
-    toast.error(message, {
-      position: toast.POSITION.TOP_LEFT,
-    });
-  }
-};
+// export const getMemberMessage = async (data) => {
+//   try {
+//     const response = await axios.post(
+//       `/api/members/getmembermessage`,
+//       data
+//     );
+//     toast.success(response.data.message, {
+//       position: toast.POSITION.TOP_LEFT,
+//     });
+//   } catch (error) {
+//     const message =
+//       (error.response && error.response.data && error.response.data.message) ||
+//       error.message ||
+//       error.toString();
+//     toast.error(message, {
+//       position: toast.POSITION.TOP_LEFT,
+//     });
+//   }
+// };
 const memberService = {
   addMember,
   getMembers,
   getMember,
   deleteMember,
   updateMember,
-  getMemberMessage,
+  // getMemberMessage,
 };
 
 export default memberService;
