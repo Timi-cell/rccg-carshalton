@@ -37,12 +37,17 @@ const Contact = () => {
           }
         );
       e.target.reset();
-      toast.success("Message sent!. Please expect my reply in your inbox.");
+      toast.success("Message sent!", {
+        position: toast.POSITION.TOP_LEFT,
+      });
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
       toast.error(
-        "Message could not be sent, please check/change your network connectivity and try again."
+        "Message not sent, please check your network connectivity and try again!",
+        {
+          position: toast.POSITION.TOP_LEFT,
+        }
       );
     }
   };
